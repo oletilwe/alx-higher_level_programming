@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 if __name__ == "__main__":
     import sys
+    import  hidden_4.pyc
+    dir(hidden_4.pyc)
     arg = sys.argv
     size = len(arg) - 1
 if size > 1:
