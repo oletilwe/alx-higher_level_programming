@@ -1,5 +1,5 @@
-#!/usr/bin/pyhton3
-if __name__ == "__main__":
-    def print_list_integer(my_list=[]):
-        for item in my_list:
-            print("d{:d}".format(item))
+#!/usr/bin/python3
+def print_list_integer(_list=[]):
+    for i in _list:
+        print('{:d}'.format(i))
+
