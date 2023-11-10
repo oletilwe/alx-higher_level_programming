@@ -8,11 +8,13 @@ tens = ["XC", "LXXX", "LXX", "LX", "L",
 digits = ["IX", "VIII", "VII", "VI", "V",
           "IV", "III", "II", "I"]
 
+
 def check_digit(string, nums):
     for i in nums:
         if i in string:
             return list(reversed(nums)).index(i) + 1
     return -1
+
 
 def convert_roman_to_int(string):
     thousand = check_digit(string, thousands)
@@ -41,11 +43,14 @@ def convert_roman_to_int(string):
         digit = 0
     return thousand * 1000 + hundred * 100 + ten * 10 + digit
 
+
 def check_input(string):
     for i in string:
         if i not in 'MCDLXVI':
             return False
     return True
+
+
 def roman_to_int(roman_string):
     if roman_string is None:
         return 0
