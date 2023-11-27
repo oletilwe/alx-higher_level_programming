@@ -1,0 +1,51 @@
+import unittest
+"""function for 5-text_indentation.py"
+def text_indentation(text):
+    if not isinstance(text, str):
+        raise TypeError("text must be a string")
+
+punctuation_marks = ['.', '?', ':']
+    current_line = ""
+
+for char in text:
+        current_line += char
+
+if char in punctuation_marks:
+            print(current_line.strip())
+            print()
+            current_line = ""
+
+ if current_line:
+        print(current_line.strip())
+
+class TestTextIndentation(unittest.TestCase):
+    def test_normal_input(self):
+        text_input = "This is a sample text. It has multiple sentences. What do you think?"
+
+with unittest.mock.patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            text_indentation(text_input)
+            output = mock_stdout.getvalue().strip()
+
+expected_output = (
+            "This is a sample text\n"
+            "\n"
+            "It has multiple sentences\n"
+            "\n"
+            "What do you think?"
+        )
+        self.assertEqual(output, expected_output)
+
+def test_empty_input(self):
+        text_input = ""
+        with unittest.mock.patch('sys.stdout', new_callable=io.StringIO) as mock_stdout:
+            text_indentation(text_input)
+            output = mock_stdout.getvalue().strip()
+
+self.assertEqual(output, "")
+
+def test_non_string_input(self):
+        with self.assertRaises(TypeError):
+            text_indentation(123)
+
+if __name__ == '__main__':
+    unittest.main()

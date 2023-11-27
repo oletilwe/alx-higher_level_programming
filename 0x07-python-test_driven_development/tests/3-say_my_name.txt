@@ -1,0 +1,40 @@
+import unittest
+from io import StringIO
+import sys
+
+
+class TestSayMyName(unittest.TestCase):
+def test_say_my_name_with_last_name(self):
+with StringIO() as mock_stdout:
+            sys.stdout = mock_stdout
+
+say_my_name("John", "Doe")
+
+sys.stdout = sys.__stdout__
+
+expected_output = "My name is John Doe"
+
+self.assertEqual(mock_stdout.getvalue().strip(), expected_output)
+
+def test_say_my_name_without_last_name(self):
+with StringIO() as mock_stdout:
+            sys.stdout = mock_stdout
+
+say_my_name("Alice")
+sys.stdout = sys.__stdout__
+
+expected_output = "My name is Alice "
+
+self.assertEqual(mock_stdout.getvalue().strip(), expected_output)
+
+def test_say_my_name_invalid_input(self):
+with self.assertRaises(TypeError) as context:
+            say_my_name(123, "Doe")
+
+self.assertEqual(
+            str(context.exception),
+            "first_name must be a string or last_name must be a string"
+        )
+
+if __name__ == '__main__':
+    unittest.main()

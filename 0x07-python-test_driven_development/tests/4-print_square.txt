@@ -1,0 +1,36 @@
+import unitttest
+from io import StringIO
+import sys
+
+
+class TestPrintSquare(unittest.TestCase):
+    def test_print_square_positive_integer(self):
+
+with StringIO() as mock_stdout:
+            sys.stdout = mock_stdout
+
+ try:
+                print_square(5)
+            except (TypeError, ValueError) as e:
+                output = str(e)
+
+sys.stdout = sys.__stdout__
+
+expected_output = "#####\n#####\n#####\n#####\n#####"
+
+self.assertEqual(mock_stdout.getvalue().strip(), expected_output)
+
+def test_print_square_negative_size(self):
+with self.assertRaises(ValueError) as context:
+            print_square(-3)
+
+self.assertEqual(str(context.exception), "size must be >= 0")
+
+def test_print_square_float_size(self):
+with self.assertRaises(TypeError) as context:
+            print_square(3.5)
+
+self.assertEqual(str(context.exception), "size must be an integer")
+
+if __name__ == '__main__':
+    unittest.main()

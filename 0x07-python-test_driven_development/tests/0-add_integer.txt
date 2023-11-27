@@ -1,0 +1,25 @@
+import unittest
+
+class TestAddInteger(unittest.TestCase):
+    def test_add_integer_valid_input(self):
+        result = add_integer(3, 5)
+        self.assertEqual(result, 8)
+
+    def test_add_integer_float_input(self):
+        result = add_integer(3.5, 5.2)
+        self.assertEqual(result, 8)
+
+    def test_add_integer_default_value(self):
+        result = add_integer(3)
+        self.assertEqual(result, 101)
+
+    def test_add_integer_invalid_input(self):
+        with self.assertRaises(TypeError) as context:
+            add_integer("3", 5)
+        self.assertEqual(
+            str(context.exception),
+            "a and b must be integers or float"
+        )
+
+if __name__ == '__main__':
+    unittest.main()
