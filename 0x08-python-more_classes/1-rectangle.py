@@ -1,7 +1,9 @@
 #!/usr/bin/python3
-# 1-rectangle.py
+"""defines a rectangle class along with its value"""
+
 
 class Rectangle:
+    """Represents the rectangle and its value"""
     def __init__(self, width=0, height=0):
         self._width = 0
         self._height = 0
