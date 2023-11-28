@@ -1,40 +1,93 @@
-import unittest
-from io import StringIO
-import sys
+# 3-say_my_name.txt
 
 
-class TestSayMyName(unittest.TestCase):
-def test_say_my_name_with_last_name(self):
-with StringIO() as mock_stdout:
-            sys.stdout = mock_stdout
+===========================
+How to Use 3-say_my_name.py
+===========================
 
-say_my_name("John", "Doe")
 
-sys.stdout = sys.__stdout__
+This modules defines a function ``say_my_name(first_name, last_name="")``.
 
-expected_output = "My name is John Doe"
 
-self.assertEqual(mock_stdout.getvalue().strip(), expected_output)
+Usage
+=====
 
-def test_say_my_name_without_last_name(self):
-with StringIO() as mock_stdout:
-            sys.stdout = mock_stdout
 
-say_my_name("Alice")
-sys.stdout = sys.__stdout__
+``say_my_name(...)`` prints "My name is <first_name> <last_name>".
 
-expected_output = "My name is Alice "
 
-self.assertEqual(mock_stdout.getvalue().strip(), expected_output)
+::
 
-def test_say_my_name_invalid_input(self):
-with self.assertRaises(TypeError) as context:
-            say_my_name(123, "Doe")
 
-self.assertEqual(
-            str(context.exception),
-            "first_name must be a string or last_name must be a string"
-        )
+    >>> say_my_name = __import__('3-say_my_name').say_my_name
+    >>> say_my_name("Brennan", "Baraban")
+    My name is Brennan Baraban
 
-if __name__ == '__main__':
-    unittest.main()
+
+::
+
+
+    >>> say_my_name("Cornelius Maxwell", "Jones II")
+    My name is Cornelius Maxwell Jones II
+
+
+The parameter ```last_name``` is optional. If no last name is provided,
+an empty string is printed instead.
+
+
+::
+
+
+    >>> say_my_name("Brennan")
+    My name is Brennan
+
+
+Invalid Names
+=============
+
+
+The parameters ``first_name`` and ``last_name``` must be strings. Otherwise,
+a TypeError is raised.
+
+
+::
+
+
+    >>> say_my_name(6, "James")
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+
+::
+
+
+    >>> say_my_name("LeBron", ["Cavs", "Lakers", "Heat"])
+    Traceback (most recent call last):
+    TypeError: last_name must be a string
+
+
+::
+
+
+    >>> say_my_name({"LeBron": 6, "James": 23}, 7.7)
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+
+::
+
+
+    >>> say_my_name(None)
+    Traceback (most recent call last):
+    TypeError: first_name must be a string
+
+
+At least one name must be provided.
+
+
+::
+
+
+    >>> say_my_name()
+    Traceback (most recent call last):
+    TypeError: say_my_name() missing 1 required positional argument: 'first_name'
