@@ -1,5 +1,5 @@
 -- a script that creates the table force_name
-USE your_database_name;
+USE force_name;
 IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'force_name' AND table_schema = DATABASE())
 THEN
 CREATE TABLE force_name (
