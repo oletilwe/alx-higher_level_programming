@@ -1,5 +1,5 @@
 -- a script that creates the table id_not_null on your MySQL server
-USE id_not_null;
+USE your_database_name;
 IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'id_not_null' AND table_schema = DATABASE())
 THEN
 CREATE TABLE id_not_null (
