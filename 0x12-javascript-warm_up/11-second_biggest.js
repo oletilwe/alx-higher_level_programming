@@ -1,16 +1,8 @@
 #!/usr/bin/node
-const findSecondBiggest = (args) => {
-  const integers = args.map(arg => parseInt(arg)).filter(num => !isNaN(num));
-
-  if (integers.length < 2) {
-    return 0;
-  }
-
-  integers.sort((a, b) => b - a);
-  return integers[1];
-};
-
-const argumentsList = process.argv.slice(2);
-const secondBiggest = findSecondBiggest(argumentsList);
-
-console.log(`Second biggest integer: ${secondBiggest}`);
+if (process.argv.length <= 3) {
+  console.log('0');
+} else {
+  const arr = process.argv.slice(2).map(Number);
+  const second = arr.sort(function (a, b) { return b - a; })[1];
+  console.log(second);
+}
