@@ -1,36 +1,17 @@
 #!/usr/bin/python3
+"""  lists all states from the database hbtn_0e_0_usa """
 import MySQLdb
 import sys
 
 
-def list_cities(username, password, database):
-    try:
-        connection = MySQLdb.connect(host='localhost', port=3306, user=username, passwd=password, db=database)
-
-        cursor = connection.cursor()
-
-        query = "SELECT * FROM cities ORDER BY id ASC"
-        cursor.execute(query)
-
-        results = cursor.fetchall()
-
-        print("Cities:")
-        for result in results:
-            print(f"{result[0]}: ({result[1]}, '{result[2]}')")
-
-    except MySQLdb.Error as e:
-        print(f"Error: {e}")
-    finally:
-        if connection:
-            connection.close()
-
-
 if __name__ == "__main__":
-
-    if len(sys.argv) != 4:
-        print("Usage: python script.py <username> <password> <database>")
-        sys.exit(1)
-
-    username, password, database = sys.argv[1:]
-
-    list_cities(username, password, database)
+    db = MySQLdb.connect(host="localhost", user=sys.argv[1],
+                         passwd=sys.argv[2], db=sys.argv[3], port=3306)
+    cur = db.cursor()
+    cur.execute("""SELECT cities.id, cities.name, states.name FROM
+                cities INNER JOIN states ON states.id=cities.state_id""")
+    rows = cur.fetchall()
+    for row in rows:
+        print(row)
+    cur.close()
+    db.close()
