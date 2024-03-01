@@ -1,0 +1,19 @@
+#!/usr/bin/python3
+import urllib.request
+import sys
+
+if len(sys.argv) != 2:
+    print("Usage: python script.py <URL>")
+    sys.exit(1)
+
+url = sys.argv[1]
+
+try:
+    with urllib.request.urlopen(url) as response:
+        if 'X-Request-Id' in response.headers:
+            x_request_id = response.headers['X-Request-Id']
+            print(f"X-Request-Id value: {x_request_id}")
+        else:
+            print("X-Request-Id header not found in the response.")
+except urllib.error.URLError as e:
+    print(f"Error accessing the URL: {e}")
