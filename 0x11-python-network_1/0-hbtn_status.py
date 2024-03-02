@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import urllib.request
 
-URL = 'https://alx-intranet.hbtn.io/status'
+url = 'https://alx-intranet.hbtn.io/status'
 try:
     with urllib.request.urlopen(url) as response:
         body = response.read().decode('utf-8')
