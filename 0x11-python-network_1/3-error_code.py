@@ -3,20 +3,18 @@ import urllib.request
 import urllib.error
 import sys
 
+if len(sys.argv) != 2:
+    print("Usage: python script.py <URL>")
+    sys.exit(1)
 
-def fetch_url_content(url):
-    try:
-        with urllib.request.urlopen(url) as response:
-            body = response.read().decode('utf-8')
-            print(body)
-    except urllib.error.HTTPError as e:
-        print(f"Error code: {e.code}")
+url = sys.argv[1]
 
+try:
+    with urllib.request.urlopen(url) as response:
+        content = response.read().decode('utf-8')
+        print("Body response:")
+        print("\t- type:", type(content))
+        print("\t- content:", content)
 
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <URL>")
-        sys.exit(1)
-
-    url = sys.argv[1]
-    fetch_url_content(url)
+except urllib.error.HTTPError as e:
+    print(f"Error code: {e.code}")

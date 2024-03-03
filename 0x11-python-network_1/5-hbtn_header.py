@@ -1,27 +1,19 @@
 #!/usr/bin/python3
+import urllib.request
 import requests
 import sys
 
 
-def get_request_id(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
+if len(sys.argv) != 2:
+    print("Usage: python script.py <URL>")
+    sys.exit(1)
 
-        request_id = response.headers.get("X-Request-Id")
-        if request_id:
-            print(f"{request_id}")
-        else:
-            print("X-Request-Id not found in the response headers.")
+url = sys.argv[1]
 
-    except requests.exceptions.RequestException as e:
-        print(f"Error: {e}")
+try:
+    with urllib.request.urlopen(url) as response:
+        x_request_id = response.getheader('X-Request-Id')
+        print(f"X-Request-Id value: {x_request_id}")
 
-
-if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python script.py <URL>")
-        sys.exit(1)
-
-    url = sys.argv[1]
-    get_request_id(url)
+except urllib.error.URLError as e:
+    print(f"Error: {e}")
