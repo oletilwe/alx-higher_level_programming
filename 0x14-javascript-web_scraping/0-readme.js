@@ -1,23 +1,18 @@
 #!/usr/bin/node
-"""
-Write a script that reads and prints the content of a file.
-"""
 
-import sys
+const fs = require('fs');
+// Import the built-in Node.js 'fs' module.
 
+fs.readFile(process.argv[2], 'utf8', function (error, content) {
+  // Use fs.readFile() to read the contents of a file specified as a command-line argument
+  // 'utf8' specifies the encoding of the file being read
 
-def read_and_print_file(file_path):
-    try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            content = file.read()
-            print(content)
-    except Exception as e:
-        print(e)
+  if (error) {
+    // If an error occurs during the file read operation, the 'error' parameter will contain an error object.
+    console.error('Error reading the file:', error);
 
-
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Please provide the file path as the first argument.")
-    else:
-        file_path = sys.argv[1]
-        read_and_print_file(file_path)
+  } else {
+    // If the file is read successfully, the 'content' parameter will contain the contents of the file as a string.
+    console.log(content);
+  }
+});
